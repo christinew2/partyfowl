@@ -20,7 +20,7 @@ function create (req, res) {
 
 const createComment = async (req, res) => {
     try {
-        const event = await Event.findById(req.params.id)
+        const event = await Event.find( {event_id: req.params.id} )
         event.comments.push(req.body)
         await event.save()
         const newComment = event.comments[event.comments.length - 1]
@@ -32,7 +32,7 @@ const createComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
     try {
-        const event = await Event.findById(req.params.event_id)
+        const event = await Event.find( {event_id: req.params.id} )
         const idx = event.comments.findIndex((comment) =>
             comment.event_id.equals(req.params.comment_id)
         )
