@@ -16,15 +16,17 @@ const EventDetails = () => {
   const { id } = useParams();
   const [eventDetails, setEventDetails] = useState();
   const [commentArray, setCommentArray] = useState([]);
+  // comment sect visability state?
 
   const handleNewCommentClick = async() => {
       console.log("I'm in the handle Click")
+      console.log(id)
       await eventService.createEvent(id)
       // check if there is an event
       // if not, create one
       // Find event
   }
-
+  
   useEffect(() => {
     ticketService.getEventById(id).then((event) => setEventDetails(event));
   }, [id]);

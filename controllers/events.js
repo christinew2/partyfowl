@@ -20,7 +20,9 @@ function create (req, res) {
 
 const createComment = async (req, res) => {
     try {
+        console.log('im hittinh createComment')
         const event = await Event.find( {event_id: req.params.id} )
+        console.log("event", event)
         event.comments.push(req.body)
         await event.save()
         const newComment = event.comments[event.comments.length - 1]
